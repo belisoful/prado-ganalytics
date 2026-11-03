@@ -24,7 +24,7 @@ Google Analytics 4 for the [PRADO PHP Framework](https://github.com/pradosoft/pr
 
 | Requirement | Scope | Purpose |
 |---|---|---|
-| PHP 8.1 – 8.5 | required | The runtime. CI runs every minor from 8.1 through 8.5 |
+| PHP 8.2 – 8.5 | required | The runtime. CI runs every minor from 8.2 through 8.5 (PRADO 4.4 requires 8.2) |
 | PRADO Framework `^4.4` | required | `TPluginModule`, `TPageService::onPreRunPage`, `TClientScriptManager`, `TCallbackClientScript`, `TClassBehavior`, `THttpHeadersManager`, the clock seam, the Composer `extra.prado` extension mechanism |
 | A GA4 property | required | Its Measurement ID (`G-XXXXXXXXXX`); Google Ads (`AW-`), Floodlight (`DC-`) and Google tag (`GT-`) ids are accepted too, and a Tag Manager container (`GTM-XXXXXXX`) works alone |
 | `ext-openssl` | for the APIs | Signs the service account JWT of `GAnalyticsServiceAccountCredentials` |
@@ -464,7 +464,7 @@ php prado-cli.php ganalytics/delete-user 1234567890.1700000000 --kind=clientId  
 ```sh
 composer install
 composer fix          # php-cs-fixer on src and tests
-composer stan         # phpstan level 3, PHP 8.1 – 8.5
+composer stan         # phpstan level 3, PHP 8.2 – 8.5
 composer unittest     # phpunit: the unit suite (no network)
 composer livetest     # phpunit: the live suite against a real property (skips without GA4_* variables)
 composer coverage     # unit coverage (Xdebug)
@@ -475,7 +475,7 @@ npx playwright test --project=chromium     # browser end-to-end tests against th
 
 The live suite reads `GA4_MEASUREMENT_ID`, `GA4_API_SECRET`, `GA4_PROPERTY_ID` and `GA4_SERVICE_ACCOUNT_JSON` (the key's JSON text or a path); in CI they are repository secrets, and every live test skips when one is absent. The end-to-end suite serves four PRADO applications with PHP's built-in server (`app`: gtag.js with a CSP; `app-gtm`: a container; `app-basic`: basic consent mode; `app-controls`: click and control tracking and the realtime counter), stubs Google's hosts in the browser, and asserts the script elements, the nonce, the CSP header and the data layer entries the snippet, the listener and the delivered calls push.
 
-CI (`.github/workflows/ganalytics.yml`) runs the checks on PHP 8.1 through 8.5 against the PRADO `master` branch, installed as a Composer path repository, plus a coverage job, Playwright on Chromium, Firefox and WebKit, and the live job. Coding standards and conventions are in [AGENTS.md](AGENTS.md).
+CI (`.github/workflows/ganalytics.yml`) runs the checks on PHP 8.2 through 8.5 against the PRADO `master` branch, installed as a Composer path repository, plus a coverage job, Playwright on Chromium, Firefox and WebKit, and the live job. Coding standards and conventions are in [AGENTS.md](AGENTS.md).
 
 ## License
 

@@ -7,7 +7,7 @@ A PRADO 4 extension for Google Analytics 4: `GAnalyticsModule` (a `TPluginModule
 - **Released version: v0.0.1; the work on `main` is the next release, v0.1.0** (unreleased). Targets PRADO 4.4 (`pradosoft/prado` `master`, aliased `4.4.x-dev`). Release notes live in [CHANGELOG.md](CHANGELOG.md) under `[Unreleased]`.
 - Symbols released through 0.1.0 carry **no `@since` tags**. A public symbol added after 0.1.0 gets `@since` with the version it ships in.
 - Record every user-visible change under an `## [Unreleased]` heading in `CHANGELOG.md` as it lands.
-- Supported and CI-tested PHP: **8.1, 8.2, 8.3, 8.4, 8.5**.
+- Supported and CI-tested PHP: **8.2, 8.3, 8.4, 8.5**.
 
 ## Key facts
 
@@ -25,7 +25,7 @@ A PRADO 4 extension for Google Analytics 4: `GAnalyticsModule` (a `TPluginModule
 ```sh
 php -l <file>                                        # syntax
 composer fix        # php-cs-fixer on src and tests (tabs); or: vendor/bin/php-cs-fixer fix src  (and: fix tests)
-composer stan       # vendor/bin/phpstan analyse --memory-limit=1G  (level 3, PHP 8.1 – 8.5)
+composer stan       # vendor/bin/phpstan analyse --memory-limit=1G  (level 3, PHP 8.2 – 8.5)
 composer unittest   # vendor/bin/phpunit --testsuite unit
 npx playwright test --project=chromium   # end-to-end (PW_CHROMIUM=<binary> when Playwright's Chromium is not installed)
 ```

@@ -78,7 +78,7 @@ test('a wizard step is a wizard_step event on the page the postback renders', as
 
 test('a grid page change is a view_item_list event', async ({ page }) => {
 	await page.goto(URL);
-	await page.getByRole('link', { name: '2', exact: true }).click();
+	await page.getByRole('link', { name: 'Page 2', exact: true }).click();
 	await expect(page.getByText('A-3')).toBeVisible();
 	expect(await events(page)).toEqual([['event', 'view_item_list', { item_list_id: 'Orders', item_list_name: 'Orders', page: 2 }]]);
 });

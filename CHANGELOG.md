@@ -34,7 +34,7 @@ The next release is 0.1.0. It brings the extension to PRADO 4.4 and its current 
 - A page without a `THead` receives the tag at the beginning of its form.
 - A module loaded after the application initialized (a lazy module) hooks the running page service at once.
 - `config/classMap.json` (the Prado3 short names) and `config/errorMessages.txt` (`ganalytics_*` error codes), both registered by Composer from `extra.prado`.
-- Unit tests (`tests/unit`, namespace `belisoful\GAnalytics\Test\Unit`), phpstan (level 3), php-cs-fixer, and CI on PHP 8.1 to 8.5 against PRADO `master`.
+- Unit tests (`tests/unit`, namespace `belisoful\GAnalytics\Test\Unit`), phpstan (level 3), php-cs-fixer, and CI on PHP 8.2 to 8.5 against PRADO `master`.
 - `CHANGELOG.md`, `AGENTS.md`, `CLAUDE.md`.
 - `ConsentMode`: `advanced` (the default) or `basic`. In basic mode no tag loads, no Google request is made and queued calls are dropped until one of `BasicConsentTypes` (`analytics_storage`, `ad_storage`) is granted; a grant during a postback renders the tag, and a grant during a callback loads it in place through a loader function (`getTagLoaderFunctionScript()`, `getTagLoaderOptions()`, `registerTagLoader()`), without `eval`. `getIsConsentGranted()`, `dropCalls()`; `ganalytics/status` shows the mode.
 - `GAnalyticsPrivacyConsentProvider`: binds a consent management module (`TConsentModule` of `belisoful/prado-privacy`, or any module with `getConsent()`, `setConsent()` and `onConsentChanged`) to Consent Mode. Categories map to consent types (`CategoryMap`), undecided categories keep `ConsentDefaults`, each consent change sends `gtag('consent', 'update', …)` (`UpdateOnChange`), and `updateConsent()` calls are written back as choices. `belisoful/prado-privacy` is suggested, not required.
@@ -51,7 +51,7 @@ The next release is 0.1.0. It brings the extension to PRADO 4.4 and its current 
 - End-to-end application `tests/playwright/app-controls` and `controls.spec.js` for the listener, tabs, views, wizard, paging and the counter.
 
 ### Changed
-- Requires PHP 8.1+ and PRADO `^4.4@dev`. The bootstrap class is declared under `extra.prado.bootstrap`.
+- Requires PHP 8.2+ and PRADO `^4.4@dev`. The bootstrap class is declared under `extra.prado.bootstrap`.
 - The Measurement ID is validated (`G-`, `AW-`, `DC-`, `GT-`, `UA-` forms); an invalid module property is refused when set, and an invalid application parameter when the page runs.
 - The tag is armed at `TPageService::onPreRunPage` and registered at `TPage::onPreRenderComplete`, when the page knows whether it has a `THead`; a page without one gets the scripts at the beginning of its form (PRADO refuses a head registration on such a page), and a callback request gets no tag.
 - Deferred calls open the session for a write, and for a read only when the request carries a session cookie.
@@ -72,9 +72,10 @@ The next release is 0.1.0. It brings the extension to PRADO 4.4 and its current 
 - `ganalytics/status` reports an unresolvable `ConsentProvider` or `Credentials` in its own row instead of aborting the report.
 - The string `'0'` is a value, not an empty one, for `UserId`, `ApiSecret`, `AccessToken`, `Key`, the endpoints and the other optional properties (`TPropertyValue::ensureNullIf()` with `FILTER_EMPTY`).
 - The configuration examples resolve `KeyFile` against the application's base path (`protected`), so `KeyFile="ga4-key.json"` names `protected/ga4-key.json`.
+- Error messages are ICU MessageFormat patterns under PRADO 4.4: the apostrophes around placeholders are doubled, so `''{0}''` renders the quoted argument.
 
 ### Upgrading from 0.0.1
-- **PRADO 4.4 and PHP 8.1** are required.
+- **PRADO 4.4 and PHP 8.2** are required.
 - **Configure by package name.** `<module id="belisoful/ganalytics" MeasurementId="…"/>` replaces the old example `<module id="belisoful/GAnalyticsModule" …/>`; a `class` attribute may still name `belisoful\GAnalytics\GAnalyticsModule` or `GAnalyticsModule`.
 - **Invalid Measurement IDs throw** `TInvalidDataValueException` (`ganalytics_measurementid_invalid`) instead of being written into the page.
 - **Renamed handlers.** `attachPageServicePageHandlers()` is `attachPageServiceHandler()`; `initPageHandler()` is `preRunPageHandler()`, and the registration itself is `registerPageScripts(TPage $page): bool`.
