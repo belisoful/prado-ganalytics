@@ -1,5 +1,5 @@
 {
-	"name": "belisoful/ganalytics",
+	"name": "belisoful/prado-ganalytics",
 	"type": "prado4-extension",
 	"description": "Google Analytics 4 (gtag.js) for the PRADO PHP framework: a module that injects the Google tag into every page.",
 	"keywords": [
