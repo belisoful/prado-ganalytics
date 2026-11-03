@@ -31,7 +31,7 @@ use Prado\Web\THttpCookie;
  *
  * ```xml
  * <module id="consent" class="belisoful\GAnalytics\GAnalyticsCookieConsentProvider" CookieName="site_consent" Expires="180" />
- * <module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" ConsentProvider="consent"
+ * <module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" ConsentProvider="consent"
  *     ConsentDefaults='{"analytics_storage": "denied", "ad_storage": "denied"}' />
  * ```
  *

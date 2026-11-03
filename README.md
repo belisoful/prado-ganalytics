@@ -34,7 +34,7 @@ Google Analytics 4 for the [PRADO PHP Framework](https://github.com/pradosoft/pr
 ## Installation
 
 ```sh
-composer require belisoful/ganalytics
+composer require belisoful/prado-ganalytics
 ```
 
 PRADO 4.4 is not yet released, so the extension depends on its development branch (`^4.4@dev`). Composer applies stability flags only from the root project, so allow it there, for example with `"minimum-stability": "dev"` and `"prefer-stable": true`, or by requiring `pradosoft/prado:^4.4@dev` yourself.
@@ -47,13 +47,13 @@ The package declares its bootstrap module in `composer.json` (`extra.prado.boots
 
 ```xml
 <modules>
-    <module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" />
+    <module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" />
 </modules>
 ```
 
 ```php
 'modules' => [
-    'belisoful/ganalytics' => ['properties' => ['MeasurementId' => 'G-XXXXXXXXXX']],
+    'belisoful/prado-ganalytics' => ['properties' => ['MeasurementId' => 'G-XXXXXXXXXX']],
 ],
 ```
 
@@ -69,7 +69,7 @@ A full configuration, with the parts described below:
 ```xml
 <modules>
     <module id="consent" class="belisoful\GAnalytics\GAnalyticsCookieConsentProvider" CookieName="site_consent" />
-    <module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" ContainerId="GTM-XXXXXXX"
+    <module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" ContainerId="GTM-XXXXXXX"
         AdditionalMeasurementIds="AW-123456789" EnabledModes="Normal, Performance"
         PagePathAsContentGroup="true" UserIdFromUser="true"
         ConsentProvider="consent" ConsentDefaults='{"analytics_storage": "denied", "ad_storage": "denied", "ad_user_data": "denied", "ad_personalization": "denied"}'
@@ -89,7 +89,7 @@ When `MeasurementId` is not set on the module, it is read from the application p
     <parameter id="GoogleAnalyticsMeasurementId" value="G-XXXXXXXXXX" />
 </parameters>
 <modules>
-    <module id="belisoful/ganalytics" />
+    <module id="belisoful/prado-ganalytics" />
 </modules>
 ```
 
@@ -151,7 +151,7 @@ Every value is JavaScript-encoded on output (`TJavaScript::encode`), so an id or
 The module raises `onPreRegisterScript` before it arms the tag. The event parameter is a `TEventParameter` whose `Parameter` is the `TPage` about to run; a handler that stops the event leaves that page without the tag:
 
 ```xml
-<module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" OnPreRegisterScript="Application.Analytics.skipPrivatePages" />
+<module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" OnPreRegisterScript="Application.Analytics.skipPrivatePages" />
 ```
 
 ```php
@@ -177,7 +177,7 @@ The module queues `gtag()` calls for the page and delivers them at `TPage::onPre
 | Container without a Measurement ID | An `event` call is `dataLayer.push({event: "sign_up", ...})`; consent and `set` calls stay `gtag()` |
 
 ```php
-$module = $this->getApplication()->getModule('belisoful/ganalytics');
+$module = $this->getApplication()->getModule('belisoful/prado-ganalytics');
 $module->trackEvent('sign_up', ['method' => 'form']);           // this page (or this callback)
 $module->trackEvent('login', ['method' => 'form'], true);        // the next page, after $this->getResponse()->redirect(...)
 $module->updateConsent(['analytics_storage' => 'granted']);      // gtag('consent', 'update', {...}), and stored by the consent provider
@@ -243,7 +243,7 @@ Three hooks turn framework events into analytics events, each opt-in:
 `TrackControls` attaches `GAnalyticsControlBehavior` to PRADO's control classes, so their events are reported without page code:
 
 ```xml
-<module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" TrackControls="wizards, views, tabs, paging, searches" />
+<module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" TrackControls="wizards, views, tabs, paging, searches" />
 ```
 
 | Name | Control | Reported |
@@ -262,7 +262,7 @@ The first activation of a view or a step, on a page's first request, is not repo
 
 ```xml
 <module id="consent" class="belisoful\GAnalytics\GAnalyticsCookieConsentProvider" CookieName="site_consent" Expires="180" />
-<module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" ConsentProvider="consent"
+<module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" ConsentProvider="consent"
     ConsentDefaults='{"analytics_storage": "denied", "ad_storage": "denied"}' />
 ```
 
@@ -285,7 +285,7 @@ A consent management module (banner, categories, a consent log) implements `IGAn
 | `basic` | no tag, no Google request; queued calls are dropped | the tag loads with the granted state |
 
 ```xml
-<module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" ConsentProvider="consent" ConsentMode="basic"
+<module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" ConsentProvider="consent" ConsentMode="basic"
     ConsentDefaults='{"analytics_storage": "denied", "ad_storage": "denied"}' />
 ```
 
@@ -304,7 +304,7 @@ Events queued before consent (`trackEvent()`, validation errors, deferred calls)
 ```xml
 <module id="belisoful/prado-privacy" Version="2026-09" />
 <module id="privacy-analytics" class="belisoful\GAnalytics\GAnalyticsPrivacyConsentProvider" />
-<module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" ConsentProvider="privacy-analytics"
+<module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" ConsentProvider="privacy-analytics"
     ConsentDefaults='{"analytics_storage": "denied", "ad_storage": "denied", "ad_user_data": "denied", "ad_personalization": "denied"}' />
 ```
 
@@ -407,9 +407,9 @@ The Data API is pull-only; Google offers no push channel for realtime data. `pol
 
 ```xml
 <module id="cron" class="Prado\Util\Cron\TCronModule">
-    <job Schedule="* * * * *" Task="belisoful/ganalytics->pollRealtime" />
+    <job Schedule="* * * * *" Task="belisoful/prado-ganalytics->pollRealtime" />
 </module>
-<module id="belisoful/ganalytics" … RealtimeMetrics="activeUsers, screenPageViews" RealtimeDimensions="country"
+<module id="belisoful/prado-ganalytics" … RealtimeMetrics="activeUsers, screenPageViews" RealtimeDimensions="country"
     OnRealtimeReport="Application.Dashboard.publishRealtime" />
 ```
 
@@ -426,7 +426,7 @@ Two framework notes for a CSP setup: the response module must name the headers m
 With [belisoful/prado-privacy](https://github.com/belisoful/prado-privacy), `GAnalyticsPersonalDataProvider` does this for every erasure request. `TPrivacyModule` and `TProcessingRegistry` discover it as a loaded module:
 
 ```xml
-<module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" PropertyId="123456789" UserIdFromUser="true">
+<module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" PropertyId="123456789" UserIdFromUser="true">
     <credentials class="belisoful\GAnalytics\GAnalyticsServiceAccountCredentials" KeyFile="ga4-service-account.json"
         Scopes="https://www.googleapis.com/auth/analytics.readonly https://www.googleapis.com/auth/analytics.edit" />
 </module>

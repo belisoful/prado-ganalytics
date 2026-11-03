@@ -42,7 +42,7 @@ use Prado\TPropertyValue;
  * ```xml
  * <module id="belisoful/prado-privacy" Version="2026-09" />
  * <module id="privacy-analytics" class="belisoful\GAnalytics\GAnalyticsPrivacyConsentProvider" />
- * <module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" ConsentProvider="privacy-analytics"
+ * <module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" ConsentProvider="privacy-analytics"
  *     ConsentDefaults='{"analytics_storage": "denied", "ad_storage": "denied", "ad_user_data": "denied", "ad_personalization": "denied"}' />
  * ```
  *

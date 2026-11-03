@@ -51,7 +51,7 @@ use Prado\Xml\TXmlElement;
  *
  * ```xml
  * <modules>
- *     <module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" ContainerId="GTM-XXXXXXX"
+ *     <module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" ContainerId="GTM-XXXXXXX"
  *         UserIdFromUser="true" PagePathAsContentGroup="true" EnabledModes="Normal, Performance"
  *         TrackExceptions="true" TrackLogins="true" TrackValidationErrors="true"
  *         ApiSecret="…" PropertyId="123456789" ConsentProvider="consent">
@@ -135,7 +135,7 @@ use Prado\Xml\TXmlElement;
  * read the property {@see setPropertyId() PropertyId} with the {@see setCredentials() Credentials}
  * (an {@see IGAnalyticsCredentials}, a module id, or a `<credentials>` element). {@see pollRealtime()}
  * runs the {@see setRealtimeMetrics() RealtimeMetrics} report and raises {@see onRealtimeReport},
- * for a `TCronModule` job (`task="belisoful/ganalytics->pollRealtime"`) that publishes live
+ * for a `TCronModule` job (`task="belisoful/prado-ganalytics->pollRealtime"`) that publishes live
  * figures through the application's own channel. {@see runCachedReport()} shares a report through
  * the application cache; {@see GAnalyticsReportDataSource} and {@see GAnalyticsRealtimeCounter}
  * put reports into templates. {@see deleteUserData()} asks Google to delete a user's data.
@@ -1597,7 +1597,7 @@ class GAnalyticsModule extends TPluginModule
 	 * Polls the realtime report ({@see getRealtimeMetrics() RealtimeMetrics},
 	 * {@see getRealtimeDimensions() RealtimeDimensions}) and raises {@see onRealtimeReport} with
 	 * it. The Data API has no push channel, so a `TCronModule` job
-	 * (`task="belisoful/ganalytics->pollRealtime"`) calls this on a schedule and a handler of the
+	 * (`task="belisoful/prado-ganalytics->pollRealtime"`) calls this on a schedule and a handler of the
 	 * event publishes the figures through the application's channel, such as
 	 * `belisoful/prado-webhooks` or `belisoful/prado-websocket`.
 	 * @throws TConfigurationException When the property id or the credentials are unset.

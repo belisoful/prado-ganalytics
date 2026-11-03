@@ -32,7 +32,7 @@ use Prado\Util\Log\TLogger;
  * as a loaded module.
  *
  * ```xml
- * <module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" PropertyId="123456789" UserIdFromUser="true">
+ * <module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" PropertyId="123456789" UserIdFromUser="true">
  *     <credentials class="belisoful\GAnalytics\GAnalyticsServiceAccountCredentials" KeyFile="ga4-key.json"
  *         Scopes="https://www.googleapis.com/auth/analytics.readonly https://www.googleapis.com/auth/analytics.edit" />
  * </module>

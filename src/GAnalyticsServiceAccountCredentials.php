@@ -32,7 +32,7 @@ use Prado\Util\Clock\TApplicationClockAwareTrait;
  * fixes the JWT claims in tests.
  *
  * ```xml
- * <module id="belisoful/ganalytics" MeasurementId="G-XXXXXXXXXX" PropertyId="123456789">
+ * <module id="belisoful/prado-ganalytics" MeasurementId="G-XXXXXXXXXX" PropertyId="123456789">
  *     <credentials class="belisoful\GAnalytics\GAnalyticsServiceAccountCredentials" KeyFile="ga4-service-account.json" />
  * </module>
  * ```

@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `belisoful/ganalytics` are recorded here. The format follows
+All notable changes to `belisoful/prado-ganalytics` are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
@@ -76,7 +76,8 @@ The next release is 0.1.0. It brings the extension to PRADO 4.4 and its current 
 
 ### Upgrading from 0.0.1
 - **PRADO 4.4 and PHP 8.2** are required.
-- **Configure by package name.** `<module id="belisoful/ganalytics" MeasurementId="…"/>` replaces the old example `<module id="belisoful/GAnalyticsModule" …/>`; a `class` attribute may still name `belisoful\GAnalytics\GAnalyticsModule` or `GAnalyticsModule`.
+- **The package is `belisoful/prado-ganalytics`** (it was `belisoful/ganalytics`): `composer require belisoful/prado-ganalytics`.
+- **Configure by package name.** `<module id="belisoful/prado-ganalytics" MeasurementId="…"/>` replaces the old example `<module id="belisoful/GAnalyticsModule" …/>`; a `class` attribute may still name `belisoful\GAnalytics\GAnalyticsModule` or `GAnalyticsModule`.
 - **Invalid Measurement IDs throw** `TInvalidDataValueException` (`ganalytics_measurementid_invalid`) instead of being written into the page.
 - **Renamed handlers.** `attachPageServicePageHandlers()` is `attachPageServiceHandler()`; `initPageHandler()` is `preRunPageHandler()`, and the registration itself is `registerPageScripts(TPage $page): bool`.
 - **Callback requests** no longer receive head registrations that were never rendered; behavior on the page is unchanged.
