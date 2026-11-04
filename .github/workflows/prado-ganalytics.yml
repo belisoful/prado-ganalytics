@@ -4,7 +4,7 @@ env:
   # The PHP version used for the browser (Playwright), live and coverage jobs
   PHP_VERSION: '8.4'
 jobs:
-  composerext:
+  extension:
     name: GAnalytics (PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-latest
 
@@ -15,13 +15,13 @@ jobs:
 
     defaults:
       run:
-        working-directory: ganalytics
+        working-directory: prado-ganalytics
 
     steps:
       - name: Checkout extension
         uses: actions/checkout@v5
         with:
-          path: ganalytics
+          path: prado-ganalytics
 
       - name: Checkout PRADO framework (4.4 dev)
         uses: actions/checkout@v5
@@ -75,13 +75,13 @@ jobs:
 
     defaults:
       run:
-        working-directory: ganalytics
+        working-directory: prado-ganalytics
 
     steps:
       - name: Checkout extension
         uses: actions/checkout@v5
         with:
-          path: ganalytics
+          path: prado-ganalytics
 
       - name: Checkout PRADO framework (4.4 dev)
         uses: actions/checkout@v5
@@ -111,7 +111,7 @@ jobs:
         if: always()
         with:
           name: coverage-report
-          path: ganalytics/build/coverage/
+          path: prado-ganalytics/build/coverage/
           retention-days: 30
 
   playwright:
@@ -130,13 +130,13 @@ jobs:
 
     defaults:
       run:
-        working-directory: ganalytics
+        working-directory: prado-ganalytics
 
     steps:
       - name: Checkout extension
         uses: actions/checkout@v5
         with:
-          path: ganalytics
+          path: prado-ganalytics
 
       - name: Checkout PRADO framework (4.4 dev)
         uses: actions/checkout@v5
@@ -154,7 +154,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: ganalytics/.nvmrc
+          node-version-file: prado-ganalytics/.nvmrc
 
       - name: Install npm dependencies
         run: npm install
@@ -176,7 +176,7 @@ jobs:
         if: always()
         with:
           name: playwright-report-${{ matrix.browser }}
-          path: ganalytics/build/playwright-report/
+          path: prado-ganalytics/build/playwright-report/
           retention-days: 30
 
   live:
@@ -188,7 +188,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ganalytics
+        working-directory: prado-ganalytics
 
     env:
       GA4_MEASUREMENT_ID: ${{ secrets.GA4_MEASUREMENT_ID }}
@@ -200,7 +200,7 @@ jobs:
       - name: Checkout extension
         uses: actions/checkout@v5
         with:
-          path: ganalytics
+          path: prado-ganalytics
 
       - name: Checkout PRADO framework (4.4 dev)
         uses: actions/checkout@v5

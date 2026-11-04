@@ -4,8 +4,8 @@
  * GAnalyticsControlBehavior class file
  *
  * @author Brad Anderson <belisoful@icloud.com>
- * @link https://github.com/belisoful/GAnalytics
- * @license https://github.com/belisoful/GAnalytics/blob/main/LICENSE
+ * @link https://github.com/belisoful/prado-ganalytics
+ * @license https://github.com/belisoful/prado-ganalytics/blob/main/LICENSE
  */
 
 namespace belisoful\GAnalytics;

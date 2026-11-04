@@ -170,7 +170,7 @@ Docblocks inform and describe; it is not persuasive writing.
 - phpunit DOES NOT have the cli option "--verbose"
 
 ## Development Environment
-- PHP 8.2 through 8.5 are supported and exercised in CI (`.github/workflows/ganalytics.yml`)
+- PHP 8.2 through 8.5 are supported and exercised in CI (`.github/workflows/prado-ganalytics.yml`)
 - PHP extensions: ctype, dom, intl, json, pcre, spl (required by PRADO)
 - Composer for dependency management
 - Required developer dependencies for code checking: phpunit/phpunit, phpstan/phpstan, friendsofphp/php-cs-fixer

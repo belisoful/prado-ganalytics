@@ -87,5 +87,5 @@ The next release is 0.1.0. It brings the extension to PRADO 4.4 and its current 
 ### Added
 - Initial release: `GAnalyticsModule`, a `TPluginModule` that registers the gtag.js script and configuration in every page head, with the Measurement ID from the module or the `GoogleAnalyticsMeasurementId` application parameter.
 
-[Unreleased]: https://github.com/belisoful/GAnalytics/compare/v0.0.1...HEAD
-[0.0.1]: https://github.com/belisoful/GAnalytics/releases/tag/v0.0.1
+[Unreleased]: https://github.com/belisoful/prado-ganalytics/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/belisoful/prado-ganalytics/releases/tag/v0.0.1

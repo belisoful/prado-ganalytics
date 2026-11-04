@@ -4,7 +4,7 @@
  * GAnalyticsCookieConsentProvider class file.
  *
  * @author Brad Anderson <belisoful@icloud.com>
- * @link https://github.com/belisoful/GAnalytics
+ * @link https://github.com/belisoful/prado-ganalytics
  * @license https://github.com/pradosoft/prado/blob/master/LICENSE
  */
 
